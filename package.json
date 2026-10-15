@@ -42,7 +42,6 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "^4.0.9",
     "@types/micromatch": "^4.0.9",
     "@types/node": "^24.0.0",
     "tsup": "^8.3.0",

@@ -1,6 +1,6 @@
 import { readFile, readdir } from "node:fs/promises";
 import { join, dirname } from "node:path";
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 import {
   SourceMetaSchema,
   TargetAdapterSchema,
@@ -15,7 +15,7 @@ export interface LoadedSource {
 
 export async function loadSource(metaPath: string): Promise<LoadedSource> {
   const raw = await readFile(metaPath, "utf-8");
-  const parsed = yaml.load(raw);
+  const parsed = load(raw);
   const meta = SourceMetaSchema.parse(parsed);
 
   const baseDir = dirname(metaPath);
@@ -32,7 +32,7 @@ export async function loadSource(metaPath: string): Promise<LoadedSource> {
 
 export async function loadTarget(filePath: string): Promise<TargetAdapter> {
   const raw = await readFile(filePath, "utf-8");
-  const parsed = yaml.load(raw);
+  const parsed = load(raw);
   return TargetAdapterSchema.parse(parsed);
 }
 
